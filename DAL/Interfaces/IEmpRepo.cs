@@ -14,5 +14,19 @@ namespace DAL.Interfaces
         //Insert ,update , delete , read
 
         Task AddEmp(Employee emp);
+
+        // get all data
+
+        Task<IList<Employee>> GetAllData(); // holds the data Ilist
+
+        // get data by ID
+
+        Task<Employee> GetDataByID(int Eid);
+
+        //Update 
+        Task UpdateEmp(Employee emp);
+
+        Task DeleteEmp(int Eid);
+
     }
 }

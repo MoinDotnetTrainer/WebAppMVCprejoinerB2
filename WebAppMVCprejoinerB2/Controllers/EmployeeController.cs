@@ -36,12 +36,61 @@ namespace WebAppMVCprejoinerB2.Controllers
         [HttpPost]
         public async Task<IActionResult> AddEmp(Employee obj)
         {
-            if (obj==null)
+            if (obj == null)
             {
                 return BadRequest();
             }
-            await _rep.AddEmp(obj); 
-            return View();   // View Add
+            await _rep.AddEmp(obj);
+
+            return RedirectToAction("EmployeeList");   // View Add
         }
+
+        [HttpGet]
+        public async Task<IActionResult> EmployeeList()
+        {
+            return View(await _rep.GetAllData());   // D
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> EditEmp(int Eid)
+        {
+            return View(await _rep.GetDataByID(Eid));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditEmp(Employee obj)
+        {
+            if (obj == null)
+            {
+                return BadRequest();
+            }
+            await _rep.UpdateEmp(obj);
+
+            return RedirectToAction("EmployeeList");   // View Add
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteEmp(int Eid)
+        {
+            return View(await _rep.GetDataByID(Eid));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteEmp(Employee obj)
+        {
+            if (obj == null)
+            {
+                return BadRequest();
+            }
+            await _rep.DeleteEmp(obj.Eid);
+
+            return RedirectToAction("EmployeeList");   // View Add
+        }
+
+
+
+
     }
 }

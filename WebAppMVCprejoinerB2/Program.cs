@@ -21,7 +21,7 @@ namespace WebAppMVCprejoinerB2
     options.UseSqlServer(builder.Configuration.GetConnectionString("Constr")));
 
 
-            builder.Services.AddScoped<IEmpRepo,EmpRepo>(); // DI
+           builder.Services.AddScoped<IEmpRepo,EmpRepo>(); // DI
 
             var app = builder.Build();
 
