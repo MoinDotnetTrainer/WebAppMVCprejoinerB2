@@ -13,5 +13,9 @@ namespace DAL.Models
 
         // options // ur Connection string  --> data source , initial catalog
         public DbSet<Employee> employees { get; set; } // table
+
+        public DbSet<Book> book { get; set; } // table
+
+        public DbSet<Movies> Movies { get; set; } // table
     }
 }

@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+   <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+            .nav-links li {
+                margin-left: 20px;
+            }
+
+            .nav-links a {
+                color: #fff;
+                text-decoration: none;
+            }
+
+                .nav-links a:hover {
+                    text-decoration: underline;
+                }
+
+        /* Home Section */
+        .home {
+            height: 80vh;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+            .home h1 {
+                font-size: 36px;
+                margin-bottom: 10px;
+            }
+
+            .home p {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .home button {
+                padding: 10px 20px;
+                background-color: #333;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+
+                .home button:hover {
+                    background-color: #555;
+                }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+   </style>
+</head>
+<body>
+   
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">MyWebsite</div>
+        <ul class="nav-links">
+            <li><a asp-controller="Action" asp-action="Homepage">Home</a></li>
+            <li><a asp-controller="Action" asp-action="Validations_Ex">Validations Example</a></li>
+            <li><a asp-controller="Employee" asp-action="EmployeeList">All Employees</a></li>
+            <li><a asp-controller="Action" asp-action="Launch">Launch Ex</a></li>
+
+            <li><a href="#">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="home">
+        <div>
+            @RenderBody()
+        </div>
+    </section>
+   
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 MyWebsite. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
