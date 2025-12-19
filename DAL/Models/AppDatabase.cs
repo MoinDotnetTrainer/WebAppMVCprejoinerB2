@@ -16,6 +16,8 @@ namespace DAL.Models
 
         public DbSet<Book> book { get; set; } // table
 
-        public DbSet<Movies> Movies { get; set; } // table
+        public DbSet<Movies> Movies { get; set; } //
+                                                  // 
+        public DbSet<ValidateModel> ValidateModel { get; set; } // table
     }
 }

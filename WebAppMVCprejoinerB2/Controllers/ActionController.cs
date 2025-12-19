@@ -30,6 +30,8 @@ namespace WebAppMVCprejoinerB2.Controllers
             bool res = _rep.AuthenticateUser(obj);
             if (res)
             {
+                HttpContext.Session.SetString("UserEmail", obj.Email); // here 
+                HttpContext.Session.SetString("LoginTime", System.DateTime.Now.ToLongTimeString());
 
                 return RedirectToAction("HomePage");
             }
@@ -41,11 +43,17 @@ namespace WebAppMVCprejoinerB2.Controllers
 
         }
 
+
+        [SetSession]
         [HttpGet]
         public IActionResult Homepage()
         {
+            ViewBag.email = HttpContext.Session.GetString("UserEmail");
+            ViewBag.time = HttpContext.Session.GetString("LoginTime");
             return View();
         }
+
+        [SetSession]
 
         [HttpGet]
         public IActionResult Validations_Ex()
@@ -67,14 +75,51 @@ namespace WebAppMVCprejoinerB2.Controllers
             return View();
         }
 
+
+        [SetSession]
         [HttpGet]
         public IActionResult Launch()
         {
             string str = null;
-            
+
             TempData["res"] = str.Length; // run time error
-            
+
             return View();
+        }
+
+
+        [SetSession]
+        public IActionResult UseAdminLayout()
+        {
+
+            return View();
+        }
+
+
+
+        [SetSession]
+        [HttpGet]
+        public IActionResult DataAnnotations()
+        {
+            return View();
+        }
+ 
+
+        [HttpPost]
+        public IActionResult DataAnnotations(ValidateModel obj)
+        {
+            if (ModelState.IsValid)  // validate the state of Ur model prop
+            {
+                return View();
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login");
         }
     }
 }

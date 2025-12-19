@@ -5,6 +5,7 @@ using WebAppMVCprejoinerB2.Models;
 
 namespace WebAppMVCprejoinerB2.Controllers
 {
+    [SetSession]
     public class EmployeeController : Controller
     {
         public readonly IEmpRepo _rep;

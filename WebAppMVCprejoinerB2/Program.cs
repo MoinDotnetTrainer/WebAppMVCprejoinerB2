@@ -21,6 +21,14 @@ namespace WebAppMVCprejoinerB2
     options.UseSqlServer(builder.Configuration.GetConnectionString("Constr")));
 
 
+            // here
+
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(60);
+                options.Cookie.IsEssential = true;
+            });
+
            builder.Services.AddScoped<IEmpRepo,EmpRepo>(); // DI
            builder.Services.AddScoped<IBookRepo, BookRepo>(); // DI
             builder.Services.AddScoped<ILogin, Loginrepo>(); // DI
@@ -43,7 +51,7 @@ namespace WebAppMVCprejoinerB2
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.MapControllerRoute(
