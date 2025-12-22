@@ -4,6 +4,7 @@ using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(AppDatabase))]
-    partial class AppDatabaseModelSnapshot : ModelSnapshot
+    [Migration("20251222062415_one to one ")]
+    partial class onetoone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,22 @@ namespace DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("DAL.Models.Aadhar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AadharTbl");
+                });
 
             modelBuilder.Entity("DAL.Models.Book", b =>
                 {
@@ -40,23 +59,6 @@ namespace DAL.Migrations
                     b.HasKey("BookID");
 
                     b.ToTable("book");
-                });
-
-            modelBuilder.Entity("DAL.Models.Country", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Country");
                 });
 
             modelBuilder.Entity("DAL.Models.Employee", b =>
@@ -104,66 +106,28 @@ namespace DAL.Migrations
                     b.ToTable("tbl_Movies");
                 });
 
-            modelBuilder.Entity("DAL.Models.State", b =>
+            modelBuilder.Entity("DAL.Models.Pan", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PanID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PanID"));
 
-                    b.Property<int>("CountryId")
+                    b.Property<int>("AadharDataId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("PanUser")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("CountryId");
-
-                    b.ToTable("State");
-                });
-
-            modelBuilder.Entity("DAL.Models.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("RefId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.HasKey("PanID");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasIndex("AadharDataId");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("user");
-                });
-
-            modelBuilder.Entity("DAL.Models.UserProfile", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("UserProfile");
+                    b.ToTable("Pantbl");
                 });
 
             modelBuilder.Entity("DAL.Models.ValidateModel", b =>
@@ -187,37 +151,15 @@ namespace DAL.Migrations
                     b.ToTable("ValidateModel");
                 });
 
-            modelBuilder.Entity("DAL.Models.State", b =>
+            modelBuilder.Entity("DAL.Models.Pan", b =>
                 {
-                    b.HasOne("DAL.Models.Country", "Country")
-                        .WithMany("States")
-                        .HasForeignKey("CountryId")
+                    b.HasOne("DAL.Models.Aadhar", "AadharData")
+                        .WithMany()
+                        .HasForeignKey("AadharDataId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("DAL.Models.UserProfile", b =>
-                {
-                    b.HasOne("DAL.Models.User", "User")
-                        .WithOne("UserProfile")
-                        .HasForeignKey("DAL.Models.UserProfile", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("DAL.Models.Country", b =>
-                {
-                    b.Navigation("States");
-                });
-
-            modelBuilder.Entity("DAL.Models.User", b =>
-                {
-                    b.Navigation("UserProfile")
-                        .IsRequired();
+                    b.Navigation("AadharData");
                 });
 #pragma warning restore 612, 618
         }

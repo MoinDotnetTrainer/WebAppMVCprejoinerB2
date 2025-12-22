@@ -4,6 +4,7 @@ using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(AppDatabase))]
-    partial class AppDatabaseModelSnapshot : ModelSnapshot
+    [Migration("20251222062659_one to ones ")]
+    partial class onetoones
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,23 +43,6 @@ namespace DAL.Migrations
                     b.HasKey("BookID");
 
                     b.ToTable("book");
-                });
-
-            modelBuilder.Entity("DAL.Models.Country", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Country");
                 });
 
             modelBuilder.Entity("DAL.Models.Employee", b =>
@@ -102,28 +88,6 @@ namespace DAL.Migrations
                     b.HasKey("MovieID");
 
                     b.ToTable("tbl_Movies");
-                });
-
-            modelBuilder.Entity("DAL.Models.State", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CountryId");
-
-                    b.ToTable("State");
                 });
 
             modelBuilder.Entity("DAL.Models.User", b =>
@@ -187,17 +151,6 @@ namespace DAL.Migrations
                     b.ToTable("ValidateModel");
                 });
 
-            modelBuilder.Entity("DAL.Models.State", b =>
-                {
-                    b.HasOne("DAL.Models.Country", "Country")
-                        .WithMany("States")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Country");
-                });
-
             modelBuilder.Entity("DAL.Models.UserProfile", b =>
                 {
                     b.HasOne("DAL.Models.User", "User")
@@ -207,11 +160,6 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("DAL.Models.Country", b =>
-                {
-                    b.Navigation("States");
                 });
 
             modelBuilder.Entity("DAL.Models.User", b =>

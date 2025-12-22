@@ -37,8 +37,8 @@ namespace WebAppMVCprejoinerB2.Controllers
             }
             else
             {
-                TempData["res"] = "Email or password is not corerct";
-                return View();
+                TempData["ErrorMsg"] = "Email or password is not correct";
+                return PartialView("ErrorPartial");
             }
 
         }
@@ -84,7 +84,7 @@ namespace WebAppMVCprejoinerB2.Controllers
 
             TempData["res"] = str.Length; // run time error
 
-            return View();
+         return View(); 
         }
 
 
@@ -121,5 +121,29 @@ namespace WebAppMVCprejoinerB2.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("Login");
         }
+
+        public JsonResult GetUser()
+        {
+            return Json(new { Name = "Ali", Age = 20 });
+           
+        }
+
+        public IActionResult GoToGoogle()
+        {
+            return Redirect("https://google.com");
+        }
+
+        public IActionResult Message()
+        {
+            return Content("Hello World!");
+        }
+
+        public IActionResult Download()
+        {
+            byte[] fileBytes = System.IO.File.ReadAllBytes("C:\\Users\\m.a.khaja.moinuddin\\source\\repos\\WebAppMVCprejoinerB2\\WebAppMVCprejoinerB2\\wwwroot\\Files\\JSTopics.txt");
+            return File(fileBytes, "application/txt", "JSTopics.C:\\Users\\m.a.khaja.moinuddin\\source\\repos\\WebAppMVCprejoinerB2\\WebAppMVCprejoinerB2\\wwwroot\\Files\\JSTopics.txt");
+        }
+
+
     }
 }

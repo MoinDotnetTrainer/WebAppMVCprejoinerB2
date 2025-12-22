@@ -1,0 +1,165 @@
+Basics
+
+Introduction to JavaScript
+
+History of JS & ES versions (ES5, ES6, ES7…)
+
+Where JS runs (Browser vs Node.js)
+
+<script> tag vs external JS file
+
+2. Data Types & Variables
+
+Primitive data types: String, Number, Boolean, Null, Undefined, BigInt, Symbol
+
+Non-primitive data types: Object, Array, Function
+
+Variable declaration: var, let, const
+
+typeof operator
+
+Type conversion (String(), Number(), Boolean())
+
+3. Operators
+
+Arithmetic: +, -, *, /, %, **
+
+Assignment: =, +=, -= etc.
+
+Comparison: ==, ===, !=, !==, >, <
+
+Logical: &&, ||, !
+
+Ternary operator: condition ? true : false
+
+4. Control Flow
+
+if, else if, else
+
+switch
+
+Loops: for, while, do…while
+
+break & continue
+
+5. Functions
+
+Function declaration & function expression
+
+Parameters & return values
+
+Arrow functions (=>)
+
+Default parameters
+
+IIFE (Immediately Invoked Function Expression)
+
+6. Scope & Closures
+
+Global vs Local scope
+
+Block scope with let & const
+
+Function scope with var
+
+Closures and their use cases
+
+7. Objects & Arrays
+
+Object literals, properties, methods
+
+Accessing properties (. vs [])
+
+Arrays: creation, accessing, length
+
+Array methods: push, pop, shift, unshift, forEach, map, filter, reduce
+
+8. DOM Manipulation
+
+getElementById, getElementsByClassName, getElementsByTagName
+
+querySelector, querySelectorAll
+
+Changing content: innerText, innerHTML, value
+
+Changing styles: .style.property
+
+Adding/removing elements: createElement, appendChild, removeChild
+
+9. Events
+
+onclick, onmouseover, onchange
+
+addEventListener & removeEventListener
+
+Event object (event.target, event.preventDefault())
+
+10. Advanced JS / ES6 Features
+
+Template literals: `Hello ${name}`
+
+Destructuring (objects & arrays)
+
+Spread & Rest operator (...)
+
+Default parameters
+
+let & const differences
+
+Modules: import & export
+
+Promises & async/await (basic understanding)
+
+11. Error Handling
+
+try, catch, finally
+
+throw statement
+
+12. Browser Storage
+
+localStorage, sessionStorage, cookies (basic)
+
+13. Miscellaneous
+
+typeof, instanceof
+
+NaN, isNaN()
+
+null vs undefined
+
+use strict
+
+Template literals vs string concatenation
+
+14. Optional / Nice to Know (For Interviews)
+
+JSON: JSON.stringify(), JSON.parse()
+
+Callbacks & higher-order functions
+
+this keyword & context
+
+Event bubbling & capturing
+
+Hoisting
+
+SetTimeout & SetInterval
+
+✅ Suggested Learning Path for Freshers
+
+Basics → Variables → Operators
+
+Control flow → Functions → Scope
+
+Objects & Arrays → Loops
+
+DOM → Events → Styling & Manipulation
+
+ES6 features → Async basics → LocalStorage
+
+Practice small projects: form validation, to-do app, quiz app
+
+If you want, I can make a ready-to-follow “JavaScript roadmap for freshers” with example topics and exercises for each section, so you can learn efficiently.
+
+Do you want me to do that?

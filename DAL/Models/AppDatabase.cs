@@ -19,5 +19,13 @@ namespace DAL.Models
         public DbSet<Movies> Movies { get; set; } //
                                                   // 
         public DbSet<ValidateModel> ValidateModel { get; set; } // table
+        public DbSet<User> user { get; set; } //
+
+        public DbSet<UserProfile> UserProfile { get; set; } //
+
+        public DbSet<Country> Country { get; set; } //
+
+        public DbSet<State> State { get; set; } //
+
     }
 }

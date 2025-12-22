@@ -2,7 +2,7 @@ using DAL.Interfaces;
 using DAL.Models;
 using DAL.Repos;
 using Microsoft.EntityFrameworkCore;
-using System;
+
 
 namespace WebAppMVCprejoinerB2
 {
@@ -29,9 +29,13 @@ namespace WebAppMVCprejoinerB2
                 options.Cookie.IsEssential = true;
             });
 
-           builder.Services.AddScoped<IEmpRepo,EmpRepo>(); // DI
-           builder.Services.AddScoped<IBookRepo, BookRepo>(); // DI
-            builder.Services.AddScoped<ILogin, Loginrepo>(); // DI
+            builder.Services.AddScoped<IEmpRepo, EmpRepo>(); // DI
+            builder.Services.AddScoped<IBookRepo, BookRepo>(); // DI
+            builder.Services.AddScoped<ILogin, Loginrepo>(); //
+                                                             // 
+            builder.Services.AddScoped<IOneToone, OnetoOnerepo>(); // DI
+
+            builder.Services.AddScoped<IOneToMany, CountryRepo>(); // DI
 
             var app = builder.Build();
 
@@ -47,7 +51,7 @@ namespace WebAppMVCprejoinerB2
                 app.UseHsts();
             }
 
-                app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
