@@ -27,5 +27,12 @@ namespace DAL.Models
 
         public DbSet<State> State { get; set; } //
 
+
+        public DbSet<Author> Author { get; set; }
+        public DbSet<Books> Books { get; set; }
+        public DbSet<Language> Language { get; set; }
+
+        public DbSet<City> City { get; set; }
+        public DbSet<Pincode> Pincode { get; set; }
     }
 }

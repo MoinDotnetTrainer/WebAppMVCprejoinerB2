@@ -84,6 +84,7 @@
 
     <div class="login-container">
         <h2>Login</h2>
+        <MyHeading name=" To Login"></MyHeading>
 
         <form method="post">
             <div class="input-group">
@@ -99,6 +100,10 @@
             <p class="signup-link">
                 Don’t have an account? <a href="#">Sign up</a>
                 @TempData["res"]
+            </p>
+
+            <p>
+                <my-button text="Delete" color="danger" icon="bi bi-trash"></my-button>
             </p>
         </form>
     </div>

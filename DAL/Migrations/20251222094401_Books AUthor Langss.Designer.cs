@@ -4,6 +4,7 @@ using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(AppDatabase))]
-    partial class AppDatabaseModelSnapshot : ModelSnapshot
+    [Migration("20251222094401_Books AUthor Langss")]
+    partial class BooksAUthorLangss
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,58 +56,17 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("LanguageID")
+                        .HasColumnType("int");
+
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.HasKey("BookID");
 
-                    b.ToTable("book");
-                });
+                    b.HasIndex("LanguageID");
 
-            modelBuilder.Entity("DAL.Models.Books", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("Authorid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Authorid");
-
-                    b.HasIndex("LanguageId");
-
-                    b.ToTable("Books");
-                });
-
-            modelBuilder.Entity("DAL.Models.City", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("City");
+                    b.ToTable("Book");
                 });
 
             modelBuilder.Entity("DAL.Models.Country", b =>
@@ -151,16 +113,16 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Models.Language", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("LanguageDesc")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("Language");
                 });
@@ -183,28 +145,6 @@ namespace DAL.Migrations
                     b.HasKey("MovieID");
 
                     b.ToTable("tbl_Movies");
-                });
-
-            modelBuilder.Entity("DAL.Models.Pincode", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CityId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PinNo")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityId")
-                        .IsUnique();
-
-                    b.ToTable("Pincode");
                 });
 
             modelBuilder.Entity("DAL.Models.State", b =>
@@ -290,32 +230,11 @@ namespace DAL.Migrations
                     b.ToTable("ValidateModel");
                 });
 
-            modelBuilder.Entity("DAL.Models.Books", b =>
+            modelBuilder.Entity("DAL.Models.Book", b =>
                 {
-                    b.HasOne("DAL.Models.Author", "Author")
-                        .WithMany()
-                        .HasForeignKey("Authorid");
-
-                    b.HasOne("DAL.Models.Language", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Language");
-                });
-
-            modelBuilder.Entity("DAL.Models.Pincode", b =>
-                {
-                    b.HasOne("DAL.Models.City", "City")
-                        .WithOne("Pincode")
-                        .HasForeignKey("DAL.Models.Pincode", "CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("City");
+                    b.HasOne("DAL.Models.Language", null)
+                        .WithMany("Books")
+                        .HasForeignKey("LanguageID");
                 });
 
             modelBuilder.Entity("DAL.Models.State", b =>
@@ -340,15 +259,14 @@ namespace DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DAL.Models.City", b =>
-                {
-                    b.Navigation("Pincode")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("DAL.Models.Country", b =>
                 {
                     b.Navigation("States");
+                });
+
+            modelBuilder.Entity("DAL.Models.Language", b =>
+                {
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("DAL.Models.User", b =>

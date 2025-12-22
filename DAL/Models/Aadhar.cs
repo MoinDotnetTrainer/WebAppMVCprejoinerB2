@@ -30,5 +30,25 @@ namespace DAL.Models
     }
 
 
+    public class City
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public Pincode Pincode { get; set; }
+    }
+
+    public class Pincode
+    {
+        public int Id { get; set; }
+        public int PinNo { get; set; }
+
+        // Foreign Key
+        public int CityId { get; set; }
+
+        // Navigation property
+        public City City { get; set; }
+    }
+
+
 
 }

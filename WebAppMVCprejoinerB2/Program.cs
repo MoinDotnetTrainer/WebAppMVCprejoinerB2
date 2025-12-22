@@ -37,6 +37,10 @@ namespace WebAppMVCprejoinerB2
 
             builder.Services.AddScoped<IOneToMany, CountryRepo>(); // DI
 
+            builder.Services.AddScoped<ILoading, LoadingRepo>(); // DI
+
+            builder.Services.AddScoped<ICityPin, Cityrepo>(); // DI
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
