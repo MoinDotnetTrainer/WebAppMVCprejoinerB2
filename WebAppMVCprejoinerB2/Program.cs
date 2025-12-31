@@ -41,6 +41,8 @@ namespace WebAppMVCprejoinerB2
 
             builder.Services.AddScoped<ICityPin, Cityrepo>(); // DI
 
+            builder.Services.AddScoped<IUserInterface, IUserClass>(); // DI
+            builder.Services.AddScoped<ITaskInterface, ITaskClass>(); //
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

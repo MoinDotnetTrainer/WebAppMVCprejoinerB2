@@ -34,5 +34,8 @@ namespace DAL.Models
 
         public DbSet<City> City { get; set; }
         public DbSet<Pincode> Pincode { get; set; }
+
+        public DbSet<Users> Users { get; set; }
+        public DbSet<UsersTask> UsersTask { get; set; }
     }
 }

@@ -1,0 +1,14 @@
+{
+  "Name": "xyz",
+  "Email": "xyz@yahoo.com",
+  "Age": 23,
+  "Status": true,
+  "Company Email": null,
+  "Salary": 45.56,
+  "Collegues": [ "Sam", "Raj", "Anu" ],
+  "Qualification": {
+    "Ssc": "A grade",
+    "+12": "A Grade",
+    "B Tech": 800
+  }
+}

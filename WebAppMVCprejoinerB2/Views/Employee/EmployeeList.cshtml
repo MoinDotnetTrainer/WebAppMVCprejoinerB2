@@ -31,14 +31,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.EName)
                 </td>
-                <td>
+                <td>    
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Password)
                 </td>
                 <td>
-                  
                     <a asp-action="EditEmp" asp-route-Eid="@item.Eid">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Eid">Details</a> |
                     <a asp-action="DeleteEmp" asp-route-Eid="@item.Eid">Delete</a>
